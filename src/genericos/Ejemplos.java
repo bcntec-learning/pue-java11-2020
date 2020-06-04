@@ -78,3 +78,4 @@ class Toy2<T extends Number, F> extends Toy<T> { //objeto generico tipo Number
       return null;
   }
 }
+
