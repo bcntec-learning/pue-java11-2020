@@ -1,0 +1,4 @@
+byte b1 = b1011;
+byte b2 = 1011b;
+byte b3 = 0b1001;
+byte b4 = 0xb001;
