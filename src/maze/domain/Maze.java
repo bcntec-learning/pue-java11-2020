@@ -1,7 +1,7 @@
 package maze.domain;
 
 public class Maze {
-    boolean data[][];
+    private boolean data[][];
 
     public Maze(int height, int width) {
         if(height<=0){
@@ -21,7 +21,7 @@ public class Maze {
         return data.length;
     }
 
-    boolean isWall(int x, int y){
+    public boolean isWall(int x, int y){
         if(y<0 || y>=getHeight()){
             throw new IllegalArgumentException("y invalid");
         }
@@ -31,7 +31,7 @@ public class Maze {
         return data[x][y];
     }
 
-    boolean buildWall(int x, int y){
+    public boolean buildWall(int x, int y){
         if(y<0 || y>=getHeight()){
             throw new IllegalArgumentException("y invalid");
         }
