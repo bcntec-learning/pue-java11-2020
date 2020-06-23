@@ -57,14 +57,13 @@ public class JGOMazeBuilderImpl implements MazeBuilder {
         
         
 		ByteBlockMatrix matrix = new ByteBlockMatrix(width,height);
-		System.out.println(matrix);
+//		System.out.println(matrix);
 		boolean[][] data = matrix.getBooleans();
 		
 		List<Coordinate> wayCoordinates = new ArrayList<>();
 		for (int a=0; a<data.length; a++) 
-			for (int b=0; b<data[0].length; b++) {
+			for (int b=0; b<data[0].length; b++) 
 				if (data[a][b]) ret.buildWall(a, b); else wayCoordinates.add(new Coordinate(a, b));
-			}
 		Supplier<Coordinate> randomCoordinate = () -> wayCoordinates.get(new Random().nextInt(wayCoordinates.size()));
 		ret.setStart( randomCoordinate.get() );
 		ret.setGoal( randomCoordinate.get() );

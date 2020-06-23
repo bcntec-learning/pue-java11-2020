@@ -18,7 +18,7 @@ public class ByteBlockMatrix {
 		
 		var w = width%2==0?width:width-1;
 		var h = height%2==0?height:height-1;
-		var n=2;
+		var n=1;
 		var numCols = w/n;
 		var numRows = h/n;
 		
@@ -99,9 +99,6 @@ public class ByteBlockMatrix {
 		boolean[][] ret = new boolean[w][h];
 		
 		String s = toString().replaceAll(" ", "").replaceAll("\\.", "").replaceAll("\n\n", "\n");
-//		System.out.println(s);
-//		System.out.println("---");
-
 		
 		AtomicInteger x = new AtomicInteger();
 		AtomicInteger y = new AtomicInteger();
@@ -113,9 +110,9 @@ public class ByteBlockMatrix {
 			if (!ko) {
 				
 			ret[x.get()][y.getAndIncrement()] = num==49;
-			System.out.print(num==49 ? '1' : '0');
+//			System.out.print(num==49 ? '1' : '0');
 			if (y.get()==h) {
-				System.out.println();
+//				System.out.println();
 				y.set(0);
 				x.incrementAndGet();
 			}

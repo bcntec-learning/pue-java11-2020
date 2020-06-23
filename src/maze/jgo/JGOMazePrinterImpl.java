@@ -27,9 +27,9 @@ public class JGOMazePrinterImpl implements MazePrinter {
 
 	@Override
 	public void print(Maze maze) {
-		printWidthHead(maze.getWidth());
+		printHeadTitle(maze.getWidth());
 		for (int x=0; x<maze.getHeight(); x++) {
-			printHeightHead(x);
+			printHeadLine(x);
 			for (int y=0; y<maze.getWidth(); y++) {
 				if (maze.isWall(x, y)) printOneBlock.doIt(ANSI_BLACK, BLOCK_WALL);
 				else if (maze.isStart(x, y)) printOneBlock.doIt(ANSI_GREEN, BLOCK_START);
@@ -41,7 +41,7 @@ public class JGOMazePrinterImpl implements MazePrinter {
 		}
 	}
 	
-	private void printWidthHead(int w) {
+	private void printHeadTitle(int w) {
 		System.out.print( ANSI_CYAN );
 		System.out.print(String.format("%1$3s", ' '));
 		for (int y=0; y<w; y++) {
@@ -50,7 +50,7 @@ public class JGOMazePrinterImpl implements MazePrinter {
 		System.out.println( ANSI_RESET );
 	}
 	
-	private void printHeightHead(int x) {
+	private void printHeadLine(int x) {
 		System.out.print( ANSI_CYAN );
 		System.out.print(String.format("%1$3s", x)); 
 		System.out.print( ANSI_RESET );
