@@ -27,10 +27,10 @@ public class JGOMazePrinterImpl implements MazePrinter {
 
 	@Override
 	public void print(Maze maze) {
-		printAxisYHead(maze.getHeight());
-		for (int x=0; x<maze.getWidth(); x++) {
-			printAxisXLineHead(x);
-			for (int y=0; y<maze.getHeight(); y++) {
+		printWidthHead(maze.getWidth());
+		for (int x=0; x<maze.getHeight(); x++) {
+			printHeightHead(x);
+			for (int y=0; y<maze.getWidth(); y++) {
 				if (maze.isWall(x, y)) printOneBlock.doIt(ANSI_BLACK, BLOCK_WALL);
 				else if (maze.isStart(x, y)) printOneBlock.doIt(ANSI_GREEN, BLOCK_START);
 				else if (maze.isGoal(x, y)) printOneBlock.doIt(ANSI_BLUE, BLOCK_GOAL);
@@ -41,16 +41,16 @@ public class JGOMazePrinterImpl implements MazePrinter {
 		}
 	}
 	
-	private void printAxisYHead(int height) {
+	private void printWidthHead(int w) {
 		System.out.print( ANSI_CYAN );
 		System.out.print(String.format("%1$3s", ' '));
-		for (int y=0; y<height; y++) {
+		for (int y=0; y<w; y++) {
 			System.out.print(String.format("%1$3s", y));
 		}
 		System.out.println( ANSI_RESET );
 	}
 	
-	private void printAxisXLineHead(int x) {
+	private void printHeightHead(int x) {
 		System.out.print( ANSI_CYAN );
 		System.out.print(String.format("%1$3s", x)); 
 		System.out.print( ANSI_RESET );

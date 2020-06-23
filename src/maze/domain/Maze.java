@@ -17,7 +17,10 @@ public class Maze {
         if(width<=0){
             throw new IllegalArgumentException("width invalid");
         }
-        data = new boolean[width][height];
+        data = new boolean[height][width];
+//        int a=this.getWidth();
+//        int b=this.getHeight();
+//        System.out.println();
     }
     
     public void setStart(Coordinate c) {
@@ -45,11 +48,11 @@ public class Maze {
 	}
 
 	public int getHeight() {
-        return data[0].length;
+        return data.length;
     }
 
     public int getWidth() {
-        return data.length;
+        return data[0].length;
     }
     
     public boolean isWall(int x, int y){
@@ -77,11 +80,12 @@ public class Maze {
 		return path.contains(new Coordinate(x, y));
 	}
     
-    private void check(int x, int y){
-        if(y<0 || y>=getHeight()){
+    private void check(int x, int y) {
+//    	System.out.println("("+x+","+y+") ["+getHeight()+","+getWidth()+"]");
+        if(y<0 || y>=getWidth()){
             throw new IllegalArgumentException("y invalid");
         }
-        if(x<0 || x>=getWidth()){
+        if(x<0 || x>=getHeight()){
             throw new IllegalArgumentException("x invalid");
         }
     }

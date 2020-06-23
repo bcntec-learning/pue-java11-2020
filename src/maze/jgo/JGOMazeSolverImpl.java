@@ -33,9 +33,9 @@ public class JGOMazeSolverImpl implements MazeSolver {
 	}
 	
 	private void init() {
-		data = new int[maze.getWidth()][maze.getHeight()];
-		for (int x=0; x<maze.getWidth(); x++) 
-			for (int y=0; y<maze.getHeight(); y++) 
+		data = new int[maze.getHeight()][maze.getWidth()];
+		for (int y=0; y<maze.getWidth(); y++) 
+			for (int x=0; x<maze.getHeight(); x++) 
 				data[x][y] = maze.isWall(x, y) ? 1 : 0;
 		printSummary();
 	}
@@ -138,8 +138,8 @@ public class JGOMazeSolverImpl implements MazeSolver {
 	
 	private boolean isExit(int r, int c) {		
 		int num = 0;
-		for (int x=0; x<maze.getWidth(); x++) 
-			for (int y=0; y<maze.getHeight(); y++) 
+		for (int y=0; y<maze.getWidth(); y++) 
+			for (int x=0; x<maze.getHeight(); x++)  
 				if (data[x][y]==0) num++;
 		return num==0;
 	}

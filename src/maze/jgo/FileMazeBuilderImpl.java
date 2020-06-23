@@ -36,9 +36,9 @@ public class FileMazeBuilderImpl implements MazeBuilder {
 			AtomicInteger w = new AtomicInteger(0);
 			AtomicInteger h = new AtomicInteger(0);
 			Files.lines(Paths.get(mazePath)).forEach(line->{
-				h.set(0);
+				w.set(0);
 				line.chars().forEach(c->{
-					Coordinate coordinate = new Coordinate(w.get(), h.get());
+					Coordinate coordinate = new Coordinate(h.get(), w.get());
 //					System.out.print(coordinate+" "+c);
 					PutInList pil = (k, d) -> {
 						List<Coordinate> list = mapList.containsKey(k) ? mapList.get(k) : new ArrayList<>();
@@ -49,13 +49,14 @@ public class FileMazeBuilderImpl implements MazeBuilder {
 					else if (c==CHAR_CODE_WALL) pil.doIt(CHAR_CODE_WALL, coordinate);
 					else if (c==CHAR_CODE_START) map.put(CHAR_CODE_START, coordinate);
 					else if (c==CHAR_CODE_GOAL) map.put(CHAR_CODE_GOAL, coordinate);
-					h.incrementAndGet();
+					w.incrementAndGet();
 				});
 //				System.out.println();
-				w.incrementAndGet();
+				h.incrementAndGet();
 			});
-			System.out.println(String.format("Maze: %s, Width: %s, Height: %s", mazePath, w.get(), h.get()));
 			var ret = new Maze(w.get(),h.get());
+//			System.out.println(String.format("Maze: %s, Width: %s, Height: %s", mazePath, w.get(), h.get()));
+			System.out.println(String.format("Maze: %s, Width: %s, Height: %s", mazePath, ret.getWidth(), ret.getHeight()));
 			// posicion inicial y final, si no vienen se resuelven al azar
 			List<Coordinate> wayCoordinates = mapList.get(CHAR_CODE_WAY);
 			Supplier<Coordinate> randomCoordinate = () -> wayCoordinates.get(new Random().nextInt(wayCoordinates.size()));
