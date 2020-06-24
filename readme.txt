@@ -1,6 +1,8 @@
-Proyecto https://github.com/bcntec-learning/pue-java11-2020
+Proyecto original https://github.com/bcntec-learning/pue-java11-2020
 
-Generador y Resolutor de laberintos.
+Generador, Resolutor y Visualizador de laberintos.
 
-202006221800 JGO Implementado Solver mediante Backtracking (fuerza bruta), y Printer avanzado.
+JGO
+202006221800 Implementado Solver mediante Backtracking (fuerza bruta), y Printer avanzado.
+202006242200 Implementado Builder mediante Prim.
 
