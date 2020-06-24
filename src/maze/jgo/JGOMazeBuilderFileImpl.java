@@ -20,11 +20,24 @@ import maze.MazeBuilder;
 import maze.domain.Coordinate;
 import maze.domain.Maze;
 
-public class FileMazeBuilderImpl implements MazeBuilder {
+/**
+ * Generador de laberintos para pruebas.
+ * 
+ * Carga un laberinto a partir de un fichero.
+ * Si el laberinto no tiene punto inicial o final los asigna aleatoriamente.
+ * 
+ * @author Jose
+ *
+ */
+public class JGOMazeBuilderFileImpl implements MazeBuilder {
+	
+	interface PutInList {
+		void doIt(int key, Coordinate coordinate);
+	}
 	
 	private final String mazePath;
 	
-	public FileMazeBuilderImpl(String path) {
+	public JGOMazeBuilderFileImpl(String path) {
 		mazePath = path;
 	}
 
@@ -39,7 +52,6 @@ public class FileMazeBuilderImpl implements MazeBuilder {
 				w.set(0);
 				line.chars().forEach(c->{
 					Coordinate coordinate = new Coordinate(h.get(), w.get());
-//					System.out.print(coordinate+" "+c);
 					PutInList pil = (k, d) -> {
 						List<Coordinate> list = mapList.containsKey(k) ? mapList.get(k) : new ArrayList<>();
 						list.add(d);
@@ -51,11 +63,9 @@ public class FileMazeBuilderImpl implements MazeBuilder {
 					else if (c==CHAR_CODE_GOAL) map.put(CHAR_CODE_GOAL, coordinate);
 					w.incrementAndGet();
 				});
-//				System.out.println();
 				h.incrementAndGet();
 			});
 			var ret = new Maze(w.get(),h.get());
-//			System.out.println(String.format("Maze: %s, Width: %s, Height: %s", mazePath, w.get(), h.get()));
 			System.out.println(String.format("Maze: %s, Width: %s, Height: %s", mazePath, ret.getWidth(), ret.getHeight()));
 			// posicion inicial y final, si no vienen se resuelven al azar
 			List<Coordinate> wayCoordinates = mapList.get(CHAR_CODE_WAY);
@@ -66,13 +76,9 @@ public class FileMazeBuilderImpl implements MazeBuilder {
 			Optional.ofNullable(mapList.get(CHAR_CODE_WALL)).ifPresent(list->list.stream().forEach(c->ret.buildWall(c.getX(),c.getY())));
 			return ret;
 		} catch (IOException e) {
-			System.err.println("mmm, algo salió mal durante la creación de laberinto-> "+e.getClass().getName()+" "+e.getMessage());
+			System.err.println("ERROR: "+e.getClass().getName()+" "+e.getMessage());
 		}
 		return null;
 	}
-		
-	interface PutInList {
-		void doIt(int key, Coordinate coordinate);
-	}
-	
+
 }

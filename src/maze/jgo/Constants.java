@@ -1,5 +1,12 @@
 package maze.jgo;
 
+/**
+ * 
+ * Constantes mágicas.
+ * 
+ * @author Jose
+ *
+ */
 public interface Constants {
 	
 	String ANSI_RESET = "\u001B[0m";

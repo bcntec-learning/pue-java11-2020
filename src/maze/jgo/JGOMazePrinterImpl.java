@@ -15,7 +15,20 @@ import static maze.jgo.Constants.BLOCK_WAY;
 import maze.MazePrinter;
 import maze.domain.Maze;
 
+/**
+ * 
+ * Visualizador de laberintos.
+ * 
+ * Imprime por pantalla el laberinto, y si aplica, posiciones inicial/final y camino encontrado.
+ * 
+ * @author Jose
+ *
+ */
 public class JGOMazePrinterImpl implements MazePrinter {
+	
+	interface PrintBlock {
+		void doIt(String ansi, char block);
+	}
 	
 	private PrintBlock printOneBlock = (a,b) -> {
 		System.out.print( a );
@@ -54,10 +67,6 @@ public class JGOMazePrinterImpl implements MazePrinter {
 		System.out.print( ANSI_CYAN );
 		System.out.print(String.format("%1$3s", x)); 
 		System.out.print( ANSI_RESET );
-	}
-
-	interface PrintBlock {
-		void doIt(String ansi, char block);
 	}
 
 }

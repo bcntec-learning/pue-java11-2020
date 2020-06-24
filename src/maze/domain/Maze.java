@@ -18,9 +18,6 @@ public class Maze {
             throw new IllegalArgumentException("width invalid");
         }
         data = new boolean[height][width];
-//        int a=this.getWidth();
-//        int b=this.getHeight();
-//        System.out.println();
     }
     
     public void setStart(Coordinate c) {
@@ -67,12 +64,12 @@ public class Maze {
     
     public boolean isStart(int x, int y){
     	check(x,y);
-        return start.getX()==x && start.getY()==y;
+        return start!=null && start.getX()==x && start.getY()==y;
     }
     
     public boolean isGoal(int x, int y){
     	check(x,y);
-        return goal.getX()==x && goal.getY()==y;
+        return goal!=null && goal.getX()==x && goal.getY()==y;
     }
     
 	public boolean isSolution(int x, int y) {
@@ -81,7 +78,6 @@ public class Maze {
 	}
     
     private void check(int x, int y) {
-//    	System.out.println("("+x+","+y+") ["+getHeight()+","+getWidth()+"]");
         if(y<0 || y>=getWidth()){
             throw new IllegalArgumentException("y invalid");
         }
