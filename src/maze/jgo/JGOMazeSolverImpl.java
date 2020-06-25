@@ -19,7 +19,7 @@ import maze.domain.MazeSolution;
  * 
  * Resolutor de laberintos.
  * 
- * Aplica algoritmo de Backtracking (fuerza bruta) para encontrar todos los caminos posibles
+ * Aplica algoritmo de Backtracking (fuerza bruta) para encontrar caminos posibles
  * entre un punto inicial y otro final.
  * 
  * @author Jose
@@ -33,7 +33,7 @@ public class JGOMazeSolverImpl implements MazeSolver {
 	private int[][] data;
 	private List<List<Coordinate>> paths = new ArrayList<>();
 	private long securityFlag = 1_00_000_000L;
-	
+
 	@Override
 	public MazeSolution solve(Maze maze) {
 		this.maze = maze;
@@ -56,7 +56,7 @@ public class JGOMazeSolverImpl implements MazeSolver {
 	}
 	
 	/**
-	 * Busca de forma recursiva todos los caminos posibles entre A y B.
+	 * Busca de forma recursiva caminos posibles entre A y B.
 	 * Debido a que puede tardar mucho, se aplica un flag de seguridad que fuerza el fin de la búsqueda
 	 * después de un máximo de iteraciones. 
 	 * @return
@@ -167,7 +167,8 @@ public class JGOMazeSolverImpl implements MazeSolver {
 	 * @return
 	 */
 	private boolean isVisited(int x, int y) {
-		return data[x][y]==VISITED;	
+		return data[x][y]==VISITED || data[x][y]==VISITED_UNMARKED
+				;	
 	}
 	
 	/**

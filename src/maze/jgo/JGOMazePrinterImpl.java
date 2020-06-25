@@ -68,5 +68,19 @@ public class JGOMazePrinterImpl implements MazePrinter {
 		System.out.print(String.format("%1$3s", x)); 
 		System.out.print( ANSI_RESET );
 	}
+	
+	public String toString(Maze maze) {
+		StringBuilder sb = new StringBuilder();
+		for (int x=0; x<maze.getHeight(); x++) {
+			for (int y=0; y<maze.getWidth(); y++) {
+				if (maze.isWall(x, y)) sb.append(1);
+				else if (maze.isStart(x, y)) sb.append('A');
+				else if (maze.isGoal(x, y)) sb.append('B');
+				else sb.append(0);
+			}
+			sb.append('\n');
+		}
+		return sb.toString();
+	}
 
 }
