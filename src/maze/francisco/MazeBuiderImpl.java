@@ -20,12 +20,6 @@ public class MazeBuiderImpl implements MazeBuilder {
         var maxLength = maxSize(maze);
 
 
-        System.out.println(in);
-        System.out.println(out);
-        System.out.println("min length=" + minLength);
-        System.out.println("max length=" + maxLength);
-
-
         //estructura temporal
         boolean[][] data = new boolean[maze.getWidth()][maze.getHeight()];
 
@@ -37,9 +31,13 @@ public class MazeBuiderImpl implements MazeBuilder {
         data[out.getX()][out.getY()] = false;
         //creacion del laberinto
 
+
+        maze.setStart(in);
+        maze.setGoal(out);
+        Random random = new Random();
         for (int x = 0; x < maze.getWidth(); x++) {
             for (int y = 0; y < maze.getHeight(); y++) {
-                if (data[x][y]) {
+                if (data[x][y] && random.nextBoolean()){
                     maze.buildWall(x, y);
                 }
             }

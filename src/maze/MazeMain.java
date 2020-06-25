@@ -1,21 +1,26 @@
 package maze;
 
 import maze.domain.Maze;
-import maze.francisco.MazeBuiderImpl;
-import maze.francisco.MazePrinterImpl;
+import maze.domain.MazeSolution;
 
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
+import java.util.ServiceLoader;
 
 public class MazeMain {
     public static void main(String[] args) {
-        //MazeBuilder builder = new JoseBuilder();
-        //MazeSolver solver = new FatimaSolver();
-        //MazePrinter printer = new XavierPriner();
-        //solver.trace();
-        MazeBuilder builder = new MazeBuiderImpl();
-        var maze = builder.build(100,100);
-        new MazePrinterImpl(2).print(maze);
+
+        var builder = ServiceLoader.load(MazeBuilder.class).findFirst().get();
+        var printer = ServiceLoader.load(MazePrinter.class).findFirst().get();
+        var solver = ServiceLoader.load(MazeSolver.class).findFirst().get();
+
+        Maze maze = null;
+        MazeSolution solution = null;
+        do {
+            maze = builder.build(20, 20);
+            solution = solver.solve(maze);
+        } while (solution.getCoordinates().isEmpty());
+        printer.print(maze, solution);
+        solution.trace();
 
     }
 }
+
