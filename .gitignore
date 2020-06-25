@@ -2,3 +2,9 @@
 **.zip
 **.iml
 /.idea
+bin/
+**.class
+.settings/
+.classpath
+.project
+build/
