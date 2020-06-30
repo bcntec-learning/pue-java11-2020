@@ -8,6 +8,10 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+/*
+@see https://blog.codefx.org/java/repackaging-exceptions-streams/
+@see https://dzone.com/articles/exception-handling-in-java-streams
+ */
 public class ProblemaComun {
 
 
